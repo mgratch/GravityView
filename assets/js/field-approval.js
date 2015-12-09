@@ -21,7 +21,15 @@
 	};
 
 	$(function() {
-		$( '.toggleApproved' ).on( 'click', self.toggle_approval );
+		if ($('.gv-datatables').length === 0){
+			$( '.toggleApproved' ).on( 'click', self.toggle_approval );
+		}
+		else {
+			$('.gv-datatables').on( 'draw.dt', function () {
+				console.log('draw');
+				$( '.toggleApproved' ).on( 'click', self.toggle_approval );
+			});
+		}
 	});
 
 	/**
@@ -36,12 +44,22 @@
 		var entry_id = $( this ).attr('data-entry-id');
 		var form_id = $( this ).attr('data-form-id');
 		var is_approved = $( this ).attr( 'data-approved-status' ).toString();
-		var set_approved = ( is_approved === '0' ) ? 'Approved' : '0';
+		var set_approved = function(){
+			if (is_approved == ''){
+				return 0;
+			}
+			else if (is_approved == 'Approved'){
+				return '';
+			}
+			else if (is_approved == '0'){
+				return 'Approved';
+			}
+		};
 
 		$( this ).addClass( 'loading' );
 
 		self.update_approval( entry_id, form_id, set_approved, $( this ) );
-
+		console.log( self.response.status );
 		return false;
 	};
 
@@ -61,11 +79,13 @@
 		$.post( gvApproval.ajaxurl, data, function ( response ) {
 			if ( response ) {
 				self.response = $.parseJSON( response );
-
-				if( '0' !== self.response.status ) {
+				console.log( self.response );
+				if( 'Approved' === self.response.status ) {
 					$target.attr( 'data-approved-status', 'Approved' ).prop( 'title', gvApproval.unapprove_title ).text( gvApproval.text.label_disapprove ).addClass( 'entry_approved' );
-				} else {
+				} else if ('0' === self.response.status){
 					$target.attr( 'data-approved-status', '0' ).prop( 'title', gvApproval.approve_title ).text( gvApproval.text.label_approve ).removeClass( 'entry_approved' );
+				} else {
+					$target.attr( 'data-approved-status', '' ).prop( 'title', 'This Entry Has Currently Not Been Approved Or Rejected' ).text( 'Unapproved' ).removeClass( 'entry_approved' );
 				}
 
 				$target.removeClass( 'loading' );
