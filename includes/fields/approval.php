@@ -35,7 +35,8 @@ class GravityView_Field_Approval extends GravityView_Field {
 	 * @return void
 	 */
 	function register_script() {
-		wp_register_script( 'gravityview-field-approval', GRAVITYVIEW_URL . 'assets/js/field-approval.js', GravityView_Plugin::version, true );
+		wp_register_script( 'gravityview-field-approval', GRAVITYVIEW_URL . 'assets/js/field-approval.js', array('jquery'), GravityView_Plugin::version, true);
+		wp_register_style( 'gravityview-field-approval-css', GRAVITYVIEW_URL . 'assets/css/field-approval.css', GravityView_Plugin::version, true );
 	}
 
 	/**
@@ -53,8 +54,10 @@ class GravityView_Field_Approval extends GravityView_Field {
 		$field_approval_text = apply_filters( 'gravityview/field/approval/text', array(
 			'label_approve' => __( 'Approve', 'gravityview' ) ,
 			'label_disapprove' => __( 'Disapprove', 'gravityview' ),
+			'label_unapproved' => __( 'Unapproved', 'gravityview' ),
 			'approve_title' => __( 'Entry not approved for directory viewing. Click to approve this entry.', 'gravityview'),
-			'unapprove_title' => __( 'Entry approved for directory viewing. Click to disapprove this entry.', 'gravityview'),
+			'dissaprove_title' => __( 'Entry approved or unapproved for directory viewing. Click to disapprove this entry.', 'gravityview'),
+			'unapprove_title' => __( 'Entry approved or unapproved for directory viewing. Click to reset approval status for this entry.', 'gravityview'),
 		) );
 
 		return $field_approval_text;
@@ -73,6 +76,8 @@ class GravityView_Field_Approval extends GravityView_Field {
 		}
 
 		wp_enqueue_script( 'gravityview-field-approval' );
+
+		wp_enqueue_style( 'gravityview-field-approval-css' );
 
 		$field_approval_text = self::get_strings();
 

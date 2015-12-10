@@ -1,0 +1,188 @@
+.gv-datatables td, .gv-table-container td {
+    position: relative;
+}
+
+td.cb_col {
+    text-align: center;
+}
+
+.approval_status {
+    position: relative;
+    text-align: center;
+}
+
+.approval_status span.value, .gv-container label span.value {
+    display:none;
+}
+
+td.approval_status > label:before,
+.gv-container label:before {
+    font-family: Dashicons;
+    font-size: 1.5em;
+}
+
+td.approval_status label[data-status="0"]:before,
+.gv-container label[data-status="0"]:before {
+    color: #000;
+    content: "\f159";
+}
+
+td.approval_status label[data-status="1"]:before,
+.gv-container label[data-status="1"]:before {
+    color: green;
+    content: "\f147";
+}
+
+td.approval_status label[data-status="2"]:before,
+.gv-container label[data-status="2"]:before  {
+    color: red;
+    content: "\f158";
+}
+
+
+#gvdt-dropdown{/* Size and position */
+    padding: 0;/* Styles */
+    cursor: pointer;
+    outline: none;/* Font settings */
+    color: #8AA8BD;
+}
+
+#gvdt-dropdown.dropdown:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: #8aa8bd transparent;
+}
+
+#gvdt-dropdown.dropdown {/* Size & position */
+    position: absolute;
+    top: 85%;
+    left: -1.76765px;
+    background: white;
+    border-radius: inherit;
+    border: 1px solid rgba(0,0,0,0.17);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-weight: normal;
+    -webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -ms-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+    list-style: none;/* Hiding */
+    opacity: 0;
+    pointer-events: none;
+    display: inline-block;
+    margin: 0;
+    width: initial;
+    z-index: 10;
+}
+
+#gvdt-dropdown.dropdown li {
+    margin: 0;
+    text-align: left;
+}
+
+#gvdt-dropdown.dropdown:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -3px;
+    left: 15px;
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: #fff transparent;
+}
+
+#gvdt-dropdown.dropdown:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    left: 13px;
+    border-width: 0 8px 8px 8px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.1) transparent;
+}
+
+#gvdt-dropdown.dropdown li a {
+    display: block;
+    padding: 10px;
+    margin-top: -10px;
+    text-decoration: none;
+    color: #8aa8bd;
+    border-bottom: 1px solid #e6e8ea;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    cursor: inherit;
+    font-family: Dashicons;
+    position: relative;
+}
+
+#gvdt-dropdown.dropdown li a:before {
+    font-size: 1.25em;
+    top: 6px;
+    position: relative;
+}
+
+#gvdt-dropdown.dropdown li a[data-status=""]:before {
+    content: "\f159";
+}
+
+#gvdt-dropdown.dropdown li a[data-status="Approved"]:before {
+    content: "\f147";
+}
+#gvdt-dropdown.dropdown li a[data-status="0"]:before {
+    content: "\f158";
+}
+
+#gvdt-dropdown.dropdown li:first-of-type a {
+    border-radius: 7px 7px 0 0;
+}
+
+#gvdt-dropdown.dropdown li:last-of-type a {
+    border: none;
+    border-radius: 0 0 7px 7px;
+}
+
+/* Hover state */
+
+#gvdt-dropdown.dropdown li:hover a {
+    background: #f3f8f8;
+}
+
+/* Active state */
+
+.active {
+    position: relative;
+}
+
+.active + #gvdt-dropdown.dropdown {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* No CSS3 support */
+
+.no-opacity       #gvdt-dropdown.dropdown,
+.no-pointerevents #gvdt-dropdown.dropdown {
+    display: none;
+    opacity: 1; /* If opacity support but no pointer-events support */
+    pointer-events: auto; /* If pointer-events support but no pointer-events support */
+}
+
+.no-opacity       .wrapper-dt-dropdown-3.active + .dropdown,
+.no-pointerevents .wrapper-dt-dropdown-3.active + .dropdown {
+    display: block;
+}
