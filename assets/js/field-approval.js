@@ -111,7 +111,7 @@
 	 * Update an entry status via AJAX
 	 */
 	self.update_approval = function ( entry_id, form_id, set_approved, $target ) {
-
+		
 		var data = {
 			action: 'gv_update_approved',
 			entry_id: entry_id,
@@ -136,7 +136,7 @@
 				} else {
 					$target.attr( 'data-approved-status', '' )
 							.prop( 'title', gvApproval.text.unapprove_title )
-							.text( gvApproval.text.label_unapprove )
+							.text( gvApproval.text.label_unapproved )
 							.removeClass( 'entry_approved' );
 				}
 				$target.removeClass( 'loading active' );
