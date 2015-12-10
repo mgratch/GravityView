@@ -79,9 +79,7 @@
 	self.toggle_approval = function ( e ) {
 		e.preventDefault();
 
-		var el = e.target,
-			entry_id = $( el ).attr('data-entry-id'),
-			form_id = $( el ).attr('data-form-id');
+		var el = e.target;
 
 		$( el ).parent().addClass('active');
 		$( el ).after(approval_dd).addClass('active');
@@ -111,7 +109,7 @@
 	 * Update an entry status via AJAX
 	 */
 	self.update_approval = function ( entry_id, form_id, set_approved, $target ) {
-		
+
 		var data = {
 			action: 'gv_update_approved',
 			entry_id: entry_id,
