@@ -31,7 +31,7 @@ if( !empty($approved) && $approved == 'Approved' ) {
 	$anchor = $strings['label_approve'];
 	$title = $strings['approve_title'];
 	$class = ' entry_approved';
-} elseif (!empty($approved) && $approved === 0) {
+} elseif (isset($approved) && $approved === "0") {
 	$title = $strings['dissaprove_title'];
 	$anchor = $strings['label_disapprove'];
 	$class = '';

@@ -121,7 +121,7 @@ class GravityView_Field_Approval extends GravityView_Field {
 		// If the search is being sorted
 		if( ! empty( $criteria['sorting']['key'] ) ) {
 
-			$criteria['sorting']['key'] = 'is_approved';
+			// $criteria['sorting']['key'] = 'is_approved';
 
 		}
 
