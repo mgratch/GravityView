@@ -69,11 +69,6 @@ td.approval_status label[data-status="2"]:before,
     border: 1px solid rgba(0,0,0,0.17);
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
     font-weight: normal;
-    -webkit-transition: all 0.5s ease-in;
-    -moz-transition: all 0.5s ease-in;
-    -ms-transition: all 0.5s ease-in;
-    -o-transition: all 0.5s ease-in;
-    transition: all 0.5s ease-in;
     list-style: none;/* Hiding */
     opacity: 0;
     pointer-events: none;
@@ -120,11 +115,6 @@ td.approval_status label[data-status="2"]:before,
     color: #8aa8bd;
     border-bottom: 1px solid #e6e8ea;
     box-shadow: inset 0 1px 0 rgba(255,255,255,1);
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
     cursor: inherit;
     font-family: Dashicons;
     position: relative;

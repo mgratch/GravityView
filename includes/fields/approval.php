@@ -9,6 +9,8 @@ class GravityView_Field_Approval extends GravityView_Field {
 
 	var $is_searchable = false;
 
+	var $is_sortable = true;
+
 	var $group = 'gravityview';
 
 	var $contexts = array( 'single', 'multiple' );
@@ -26,6 +28,10 @@ class GravityView_Field_Approval extends GravityView_Field {
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_script' ) );
 
 		add_action( 'gravityview/field/approval/load_scripts', array( $this, 'enqueue_and_localize_script' ) );
+
+		add_filter( 'gravityview/common/sortable_fields', array( $this, 'add_approval_field_to_sort_list' ), 10, 2 );
+
+		add_filter('gravityview_search_criteria', array( $this, 'enable_sorting_by_approval' ), 10, 4 );
 
 	}
 
@@ -108,6 +114,36 @@ class GravityView_Field_Approval extends GravityView_Field {
 		}
 
 		return $entry_default_fields;
+	}
+
+	public function enable_sorting_by_approval( $criteria, $form_ids, $view_id ) {
+
+		// If the search is being sorted
+		if( ! empty( $criteria['sorting']['key'] ) ) {
+
+			$criteria['sorting']['key'] = 'is_approved';
+
+		}
+
+		return $criteria;
+	}
+
+
+	/**
+	 * Add the Approval Field to the Sort Options Select Box
+	 * @param $fields
+	 * @param $formid
+	 * @return mixed
+	 */
+	public function add_approval_field_to_sort_list( $fields, $formid ){
+		$approval_field = array(
+			'label' => $this->label,
+			'type' => $this->name
+		);
+
+		$fields['approval'] = $approval_field;
+
+		return $fields;
 	}
 
 }
